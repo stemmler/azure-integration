@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: AzureContainerRegistry@1
+- task: Docker@1
   inputs:
     containerRegistry: 'stemmlerazureregistryserviceconnection'  # Use the name of your service connection
     repository: 'azure-integration'
