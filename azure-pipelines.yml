@@ -10,10 +10,19 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'kelseyspiretestregistry'  # Use the name of your service connection
+    repository: 'azure-integration'
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
+    buildContext: '$(System.DefaultWorkingDirectory)'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- script: docker push kelseyspiretestregistry.azurecr.io/web-app-image:$(Build.BuildId)
+  displayName: 'docker push'
+
+- task: AzureContainerApp@1
+  inputs:
+    azureSubscription: 'kelseyspiretestregistry'  # Use the name of your service connection
+    appName: 'stemmler-test-container-app'  # Replace with your Azure Container Apps app name
+    dockerImages: 'web-app-image:$(Build.BuildId)'
