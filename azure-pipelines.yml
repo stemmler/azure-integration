@@ -15,7 +15,7 @@ steps:
     containerRegistry: 'stemmlerazureregistryserviceconnection'  # Use the name of your service connection
     repository: 'azure-integration'
     command: 'build'
-    Dockerfile: '**/Dockerfile'
+    Dockerfile: './Dockerfile'
     buildContext: '$(System.DefaultWorkingDirectory)'
 
 - script: docker push kelseyspiretestregistry.azurecr.io/web-app-image:$(Build.BuildId)
@@ -24,5 +24,5 @@ steps:
 #- task: AzureContainerApp@1
 #  inputs:
 #    azureSubscription: 'kelseyspiretestregistry'  # Use the name of your service connection
-#    appName: 'stemmler-test-container-app'  # Replace with your Azure Container Apps app name
+#    appName: 'stemmler-hello-world-test-container-app'  # Replace with your Azure Container Apps app name
 #    dockerImages: 'web-app-image:$(Build.BuildId)'
