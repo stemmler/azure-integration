@@ -10,9 +10,9 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: AzureContainerRegistry@2
+- task: AzureContainerRegistry@1
   inputs:
-    containerRegistry: 'kelseyspiretestregistry'  # Use the name of your service connection
+    containerRegistry: 'stemmlerazureregistryserviceconnection'  # Use the name of your service connection
     repository: 'azure-integration'
     command: 'build'
     Dockerfile: '**/Dockerfile'
