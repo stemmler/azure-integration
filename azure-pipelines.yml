@@ -12,7 +12,7 @@ pool:
 steps:
 - task: Docker@2
   inputs:
-    containerRegistry: 'kelseyspiretestregistry'  # Use the name of your service connection
+    containerRegistry: 'stemmlergithubserviceconnection'  # Use the name of your service connection
     repository: 'azure-integration'
     command: 'build'
     Dockerfile: '**/Dockerfile'
